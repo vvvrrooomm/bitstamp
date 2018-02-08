@@ -167,7 +167,7 @@ Bitstamp.prototype.transactions = function(market, options, callback) {
 }
 
 Bitstamp.prototype.ticker = function(market, callback) {
-  this._get(market, 'ticker', callback);
+  this._post(market, 'ticker', callback);
 }
 
 Bitstamp.prototype.ticker_hour = function(market, callback) {
