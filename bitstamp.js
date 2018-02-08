@@ -16,7 +16,7 @@ _.mixin({
 
 // error object this lib returns
 var BitstampError = function BitstampError(message, meta) {
-  Error.captureStackTrace(this, this.constructor);
+  this.constructor= Error.caller();
   this.name = this.constructor.name;
   this.message = message;
   this.meta = meta;
