@@ -16,8 +16,7 @@ _.mixin({
 
 // error object this lib returns
 var BitstampError = function BitstampError(message, meta) {
-  this.constructor= Error.caller();
-  this.name = this.constructor.name;
+  this.name = 'bitstamp';
   this.message = message;
   this.meta = meta;
 };
@@ -38,6 +37,7 @@ Bitstamp.prototype._request = function(method, path, data, callback, args) {
     host: this.host,
     path: path,
     method: method,
+    async:false,
     headers: {
       'User-Agent': 'Mozilla/4.0 (compatible; Bitstamp node.js client)'
     }
@@ -167,7 +167,7 @@ Bitstamp.prototype.transactions = function(market, options, callback) {
 }
 
 Bitstamp.prototype.ticker = function(market, callback) {
-  this._post(market, 'ticker', callback);
+  this._post(market, 'ticker', callback, {async:false});
 }
 
 Bitstamp.prototype.ticker_hour = function(market, callback) {
@@ -202,7 +202,7 @@ Bitstamp.prototype.eur_usd = function(callback) {
 //
 
 Bitstamp.prototype.balance = function(market, callback) {
-  this._post(market, 'balance', callback);
+  this._post(market, 'balance', callback, {async:false});
 }
 
 Bitstamp.prototype.user_transactions = function(market, options, callback) {
